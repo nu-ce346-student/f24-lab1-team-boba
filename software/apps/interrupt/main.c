@@ -28,7 +28,10 @@ void SWI1_EGU1_IRQHandler(void) {
 
   // Implement me
   printf("going in software handler \n");
-  nrf_delay_ms(50000);
+  for (int i = 0; i < 10; i++) {
+    printf("%d\n", i);
+    nrf_delay_ms(1000);
+  }  
 
 }
 
