@@ -1,9 +1,25 @@
+
 #include "gpio.h"
 
 typedef struct{
   // Step 3:
   // Add register definitions here
+	uint32_t OUT;
+  uint32_t OUTSET;
+  uint32_t OUTCLR;
+  uint32_t IN;
+  uint32_t DIR;
+  uint32_t DIRSET;
+  uint32_t DIRCLR;
+  uint32_t LATCH;
+  uint32_t DETECTMODE;
+  uint32_t _unused_A[(0x700-0X524)/4 - 1];    // for the unused bits
+  uint32_t PIN_CNF[32];   //array for pin_cnf values of 0 to 31 (32 values)
 } gpio_reg_t;
+
+  volatile gpio_regs_t* port1 = (gpio_regs_t*)(0x50000000);
+  volatile gpio_regs_t* port2 = (gpio_regs_t*)(0x50000300);
+
 
 // Inputs: 
 //  gpio_num - gpio number 0-31 OR (32 + gpio number)
@@ -47,5 +63,10 @@ void gpio_print(void) {
   // Use this function for debugging purposes
   // For example, you could print out struct field addresses
   // You don't otherwise have to write anything here
+}
+
+void main ()
+{
+	&(gpio_reg_t->ptr_port1).gpio_print();
 }
 
