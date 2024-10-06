@@ -14,6 +14,7 @@
 
 int main(void) {
   printf("Board started!\n");
+  gpio_print();
 
   // Turn on all LEDs on the back of the Microbit
   // Add code here
