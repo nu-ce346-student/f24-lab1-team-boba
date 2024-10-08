@@ -12,6 +12,9 @@
 #include "microbit_v2.h"
 #include "gpio.h"
 
+#define P0_DIR (*(volatile uint32_t *)(0x50000000 + 0x514))
+#define P0_OUT (*(volatile uint32_t *)(0x50000000 + 0x504))
+
 int main(void) {
   printf("Board started!\n");
   gpio_print();
@@ -21,7 +24,10 @@ int main(void) {
 
   // Control LED with raw MMIO
   // Microphone LED is P0.20 and active high
-  // Add code here
+  // Add code hereP0_OUT
+  P0_DIR = 1 << 20;
+  P0_OUT = 1 << 20;
+
 
   // loop forever
   printf("Looping\n");
