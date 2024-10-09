@@ -21,6 +21,21 @@ int main(void) {
 
   // Turn on all LEDs on the back of the Microbit
   // Add code here
+  int gpio_nums[] = {21, 22, 15, 24, 19, 28, 11, 31, 37, 30};
+  int dir = 1;
+  for (uint32_t i = 0; i<sizeof(gpio_nums); i++) {
+    gpio_config(gpio_nums[i], dir);
+  }
+
+  // rows
+  for (uint32_t i = 0; i<5; i++) {
+    gpio_set(gpio_nums[i]);
+  }
+
+  // cols
+  for (uint32_t i = 5; i<sizeof(gpio_nums); i++) {
+    gpio_clear(gpio_nums[i]);
+  }
 
   // Control LED with raw MMIO
   // Microphone LED is P0.20 and active high
