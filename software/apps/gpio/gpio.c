@@ -38,7 +38,7 @@ void gpio_config(uint8_t gpio_num, gpio_direction_t dir) {
   if (gpio_num < 32) {
     port0->PIN_CNF[gpio_num] = setnum;
   } else {
-    port1->PIN_CNF[gpio_num] = setnum;
+    port1->PIN_CNF[gpio_num-32] = setnum;
   }
 }
 
@@ -51,7 +51,7 @@ void gpio_set(uint8_t gpio_num) {
   if (gpio_num < 32) {
     port0->OUT |= 1 << gpio_num; 
   } else {
-    port1->OUT |= 1 << gpio_num; 
+    port1->OUT |= 1 << (gpio_num-32); 
   }
 }
 
@@ -64,7 +64,7 @@ void gpio_clear(uint8_t gpio_num) {
   if (gpio_num < 32) {
     port0->OUT &= 0 << gpio_num;
   } else {
-    port1->OUT &= 0 << gpio_num;
+    port1->OUT &= 0 << (gpio_num-32);
   }
 }
 
@@ -88,14 +88,14 @@ void gpio_print(void) {
   // Use this function for debugging purposes
   // For example, you could print out struct field addresses
   // You don't otherwise have to write anything here
-    // printf("%p\n", &(port0->OUT));
-    // printf("Port 0 OUT reg address: %p\n", &(port0->OUT));
-    // printf("Port 0 DIR reg address: %p\n", &(port0->DIR));
-    // printf("Port 0 PIN_CNF[0] register address: %p\n", &(port0->PIN_CNF));
+    printf("%p\n", &(port0->OUT));
+    printf("Port 0 OUT reg address: %p\n", &(port0->OUT));
+    printf("Port 0 DIR reg address: %p\n", &(port0->DIR));
+    printf("Port 0 PIN_CNF[0] register address: %p\n", &(port0->PIN_CNF));
 
-    // printf("Port 1 OUT reg address: %p\n", &(port1->OUT));
-    // printf("Port 1 DIR reg address: %p\n", &(port1->DIR));
-    // printf("Port 1 PIN_CNF[0] reg address: %p\n", &(port1->PIN_CNF));
+    printf("Port 1 OUT reg address: %p\n", &(port1->OUT));
+    printf("Port 1 DIR reg address: %p\n", &(port1->DIR));
+    printf("Port 1 PIN_CNF[0] reg address: %p\n", &(port1->PIN_CNF));
 }
 
 

@@ -23,7 +23,7 @@ int main(void) {
   // Add code here
   int gpio_nums[] = {21, 22, 15, 24, 19, 28, 11, 31, 37, 30};
   int dir = 1;
-  for (uint32_t i = 0; i<sizeof(gpio_nums); i++) {
+  for (uint32_t i = 0; i<10; i++) {
     gpio_config(gpio_nums[i], dir);
   }
 
@@ -33,7 +33,7 @@ int main(void) {
   }
 
   // cols
-  for (uint32_t i = 5; i<sizeof(gpio_nums); i++) {
+  for (uint32_t i = 5; i<10; i++) {
     gpio_clear(gpio_nums[i]);
   }
 
