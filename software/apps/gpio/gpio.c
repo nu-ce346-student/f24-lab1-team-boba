@@ -79,7 +79,7 @@ bool gpio_read(uint8_t gpio_num) {
   if (gpio_num < 32) {
     return (port0->IN >> gpio_num ) & 0x1;
   } else {
-    return (port1->IN >> gpio_num ) & 0x1;
+    return (port1->IN >> gpio_num-32 ) & 0x1;
   }
 }
 
