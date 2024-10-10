@@ -45,26 +45,38 @@ void gpio_config(uint8_t gpio_num, gpio_direction_t dir) {
 // Inputs: 
 //  gpio_num - gpio number 0-31 OR (32 + gpio number)
 void gpio_set(uint8_t gpio_num) {
+  printf("gpio_set");
   // Implement me
   // This function should make the pin high
   // It can assume that the pin has already been configured
   if (gpio_num < 32) {
     port0->OUT |= 1 << gpio_num; 
+    printf(gpio_num);
+    printf("%p\n", &(port0->OUT));
   } else {
     port1->OUT |= 1 << (gpio_num-32); 
+    printf(gpio_num);
+    printf("%p\n", &(port1->OUT));
   }
 }
 
 // Inputs: 
 //  gpio_num - gpio number 0-31 OR (32 + gpio number)
 void gpio_clear(uint8_t gpio_num) {
+  printf("gpio_clear");
   // Implement me
   // This function should make the pin low
   // It can assume that the pin has already been configured
   if (gpio_num < 32) {
     port0->OUT &= 0 << gpio_num;
+    printf(gpio_num);
+    printf("%p\n", &(port0->OUT));
+
   } else {
     port1->OUT &= 0 << (gpio_num-32);
+    printf(gpio_num);
+    printf("%p\n", &(port1->OUT));
+
   }
 }
 
@@ -76,10 +88,15 @@ bool gpio_read(uint8_t gpio_num) {
   // Implement me
   // This function should read the value from the pin
   // It can assume that the pin has already been configured
+  printf("gpio_read");
   if (gpio_num < 32) {
+    printf(gpio_num);
     return (port0->IN >> gpio_num ) & 0x1;
+    printf("%p\n", &(port0->IN));
   } else {
+    printf(gpio_num);
     return (port1->IN >> (gpio_num-32) ) & 0x1;
+    printf("%p\n", &(port0->IN));
   }
 }
 
