@@ -19,6 +19,13 @@ int main(void) {
   printf("Board started!\n");
   gpio_print();
 
+  // Control LED with raw MMIO
+  // Microphone LED is P0.20 and active high
+  // Add code hereP0_OUT
+  P0_DIR = 1 << 20;
+  P0_OUT = 1 << 20;
+
+
   // Turn on all LEDs on the back of the Microbit
   // Add code here
   int gpio_nums[] = {21, 22, 15, 24, 19, 28, 11, 31, 37, 30};
@@ -36,13 +43,6 @@ int main(void) {
   for (uint32_t i = 5; i<10; i++) {
     gpio_clear(gpio_nums[i]);
   }
-
-  // Control LED with raw MMIO
-  // Microphone LED is P0.20 and active high
-  // Add code hereP0_OUT
-  P0_DIR = 1 << 20;
-  P0_OUT = 1 << 20;
-
 
   // loop forever
   printf("Looping\n");
