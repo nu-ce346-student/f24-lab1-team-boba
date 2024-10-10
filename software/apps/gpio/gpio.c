@@ -30,9 +30,9 @@ void gpio_config(uint8_t gpio_num, gpio_direction_t dir) {
   // Implement me
   // This function should configure the pin as an input/output
   // Hint: Use proper PIN_CNF instead of DIR
-  uint8_t setnum = 0;
+  uint8_t setnum = 0;   // ...00000
   if (dir == 1) {
-    setnum = 3;
+    setnum = 3;     // ...000011
   }
 
   if (gpio_num < 32) {
@@ -79,7 +79,7 @@ bool gpio_read(uint8_t gpio_num) {
   if (gpio_num < 32) {
     return (port0->IN >> gpio_num ) & 0x1;
   } else {
-    return (port1->IN >> gpio_num-32 ) & 0x1;
+    return (port1->IN >> (gpio_num-32) ) & 0x1;
   }
 }
 
