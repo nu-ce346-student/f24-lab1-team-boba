@@ -35,7 +35,6 @@ bool check_btnB(void) {
 }
 
 void turn_on_all_LEDs(void) {
-
   // Turn on all LEDs on the back of the Microbit
   // Add code here
   int gpio_nums[] = {21, 22, 15, 24, 19, 28, 11, 31, 37, 30};

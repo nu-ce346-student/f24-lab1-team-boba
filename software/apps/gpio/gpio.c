@@ -53,12 +53,10 @@ void gpio_set(uint8_t gpio_num) {
     // port0->OUT |= 1 << gpio_num; 
     port0->OUTSET = 1 << gpio_num;
     printf("gpio_num: %d\n", gpio_num);
-    printf("%p\n", &(port0->OUT));
   } else {
     // port1->OUT |= 1 << (gpio_num-32); 
     port1->OUTSET = 1 << (gpio_num - 32);
     printf("gpio_num: %d\n", gpio_num);
-    printf("%p\n", &(port1->OUT));
   }
 }
 
@@ -74,14 +72,12 @@ void gpio_clear(uint8_t gpio_num) {
     port0->OUTCLR = 1 << gpio_num;
 
     printf("gpio_num: %d\n", gpio_num);
-    printf("%p\n", &(port0->OUT));
 
   } else {
     // port1->OUT &= 0 << (gpio_num-32);
     port1->OUTCLR = 1 << (gpio_num - 32);
 
     printf("gpio_num: %d\n", gpio_num);
-    printf("%p\n", &(port1->OUT));
 
   }
 }
@@ -98,11 +94,9 @@ bool gpio_read(uint8_t gpio_num) {
   if (gpio_num < 32) {
     printf("gpio_num: %d\n", gpio_num);
     return (port0->IN >> gpio_num ) & 0x1;
-    printf("%p\n", &(port0->IN));
   } else {
     printf("gpio_num: %d\n", gpio_num);
     return (port1->IN >> (gpio_num-32) ) & 0x1;
-    printf("%p\n", &(port0->IN));
   }
 }
 
@@ -111,14 +105,14 @@ void gpio_print(void) {
   // Use this function for debugging purposes
   // For example, you could print out struct field addresses
   // You don't otherwise have to write anything here
-    printf("%p\n", &(port0->OUT));
-    printf("Port 0 OUT reg address: %p\n", &(port0->OUT));
-    printf("Port 0 DIR reg address: %p\n", &(port0->DIR));
-    printf("Port 0 PIN_CNF[0] register address: %p\n", &(port0->PIN_CNF));
+    // printf("%p\n", &(port0->OUT));
+    // printf("Port 0 OUT reg address: %p\n", &(port0->OUT));
+    // printf("Port 0 DIR reg address: %p\n", &(port0->DIR));
+    // printf("Port 0 PIN_CNF[0] register address: %p\n", &(port0->PIN_CNF));
 
-    printf("Port 1 OUT reg address: %p\n", &(port1->OUT));
-    printf("Port 1 DIR reg address: %p\n", &(port1->DIR));
-    printf("Port 1 PIN_CNF[0] reg address: %p\n", &(port1->PIN_CNF));
+    // printf("Port 1 OUT reg address: %p\n", &(port1->OUT));
+    // printf("Port 1 DIR reg address: %p\n", &(port1->DIR));
+    // printf("Port 1 PIN_CNF[0] reg address: %p\n", &(port1->PIN_CNF));
 }
 
 
